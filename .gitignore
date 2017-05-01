@@ -1,12 +1,142 @@
-*.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+//imports
+import javax.swing.*;
+import javax.swing.JOptionPane;
+import java.util.*;
+import java.io.*;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+// **main class**
+public class PrimNum {
+   static final boolean $DEBUG = true;
+   public static int mersennePrime;
+   public static int mern;
+   public static int[] array;
+   public static int hund1, hund2, hund3, hund4, hund5, hund6, hund7, hund8, hund9, hund10;
+   static boolean mers = false;
+   //main method
+   public static void main (String[] args)throws FileNotFoundException {
+         //debug
+      if ($DEBUG) System.out.println ("debug::restarting code");
+         //code starts here
+      int PER_LINE = 10;
+      int count = 0;
+      int number =2;
+      int merc = 0;
+   
+      array = new int[1000];
+      System.out.println("Prime numbers from 1 to 1000 are:\n");   
+      while(count<array.length && number <= 1000) {
+         boolean iPrime = true;
+         for(int d=2;d<=number/2;d++) {
+            if(number%d == 0) {
+               iPrime = false;
+               break;
+            }
+            array[count]=number;
+         } 
+         mercalc(number);
+         mers(array,mersennePrime);
+         if(mers) {
+            System.out.print("I DONT KNOW");
+         }
+         if(iPrime) {
+            count++;
+                           //System.out.print(mersennePrime + "mres");
+            /*for(int mern: array){  
+               if(mern.equals("2")){
+                  mers=true;
+               }
+               if(mers){
+                  merc++;
+                  System.out.print("test test test" + merc);
+               }
+               //System.out.print((array[count]=number) + "* ");
+            }*/
+            if(count%PER_LINE == 0) {
+               System.out.println(array[count] = number); 
+            }
+            else 
+               System.out.print((array[count]=number) + " ");
+         }
+         if ((array[count] = number) > 0 && (array[count] = number) < 100) {
+            hund1 = count;
+         }
+         else if ((array[count] = number) > 100 && (array[count] = number) < 200) {
+            hund2 = count - hund1;
+         }
+         else if ((array[count] = number) > 200 && (array[count] = number) < 300) {
+            hund3 = count - hund2 - hund1;
+         }
+         else if ((array[count] = number) > 300 && (array[count] = number) < 400) {
+            hund4 = count - hund3 - hund2 - hund1;
+         }
+         else if ((array[count] = number) > 400 && (array[count] = number) < 500) {
+            hund5 = count - hund4 - hund3 - hund2 - hund1;
+         }
+         else if ((array[count] = number) > 500 && (array[count] = number) < 600) {
+            hund6 = count - hund5 - hund4 - hund3 - hund2 - hund1;
+         }
+         else if ((array[count] = number) > 600 && (array[count] = number) < 700) {
+            hund7 = count - hund6 - hund5 - hund4 - hund3 - hund2 - hund1;
+         }
+         else if ((array[count] = number) > 700 && (array[count] = number) < 800) {
+            hund8 = count - hund7 - hund6 - hund5 - hund4 - hund3 - hund2 - hund1;
+         }
+         else if ((array[count] = number) > 800 && (array[count] = number) < 900) {
+            hund9 = count - hund8 - hund7 - hund6 - hund5 - hund4 - hund3 - hund2 - hund1;
+         }
+         else if ((array[count] = number) > 900 && (array[count] = number) < 1000) {
+            hund10 = count - hund9 - hund8 - hund7 - hund6 - hund5 - hund4 - hund3 - hund2 - hund1;
+         }
+      
+         number++;
+      }
+      System.out.println("\n\nThe total number of primes between 1 and 1000 are: " + count);
+      System.out.println("The number of Mersennes are: " + merc);
+      System.out.println("The counts of Prime #'s in each hundreds are: ");
+      System.out.println(hund1 + " , " + hund2 + " , " + hund3 + " , " + hund4 + " , " + hund5 + " , " + hund6 + " , " + hund7 + " , " + hund8 + " , " + hund9 + " , " + hund10);
+   
+   //input into file type
+      /*File fName2 = new File("Documents/OutFile.txt");
+      PrintWriter output = new PrintWriter(fName2);
+      String[] outArr = new String[200];
+      for(int g=0;g<outArr.length;g++){
+         output.println(outArr[g]);
+      }
+      if(args.length != 2) {
+         //System.exit(1);
+      
+         File sourceFile = new File(args[0]);
+         if(!sourceFile.exists()){
+            System.out.println("Source file " + args[0] + " does not exist");
+            System.exit(2);
+         }
+      
+         File targetFile = new File(args[1]);
+         if(targetFile.exists()) {
+            System.out.println("Target file " + args[1] + " already exists");
+            System.exit(3);
+         }
+      
+         
+      }
+      */ //end file input
+   } 
+   public static int mers(int[]array,int mersennePrime) {
+      if ($DEBUG) System.out.println ("debug::merp method");
+      for(int mern: array){
+         if(mern==mersennePrime){
+            System.out.print("* ");
+         }
+         mers=true;
+      }
+      return mern;
+   }
+   
+   public static int mercalc(int number){
+      if($DEBUG) System.out.println("debug::mercalc");
+      mersennePrime=(int)(Math.pow(2,number)-1);
+      return mersennePrime;
+   }
+   
+} //end class
